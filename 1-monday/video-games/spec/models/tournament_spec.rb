@@ -16,5 +16,11 @@ RSpec.describe Tournament, type: :model do
       tournament = Tournament.create(name: "")
       expect(tournament.id).to be_falsy
     end
+
+    it 'should NOT create a tournament when name is repeated' do
+      Tournament.create(name: "super tournament")
+      tournament = Tournament.create(name: "super tournament")
+      expect(tournament.id).to be_falsy
+    end
   end
 end
