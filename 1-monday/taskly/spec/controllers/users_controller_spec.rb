@@ -20,6 +20,23 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+  describe 'GET #show' do
+    before(:each) do
+      @user = User.create(name: "superuser", email: "root@example.com")
+    end
+
+    it 'should respond successfully with an HTTP 200 status code' do
+      get :show, id: @user.id
+      expect(response).to be_success
+      expect(response.code.to_i).to eq(200)
+    end
+
+    it 'should return a json file with the user' do
+      get :show, id: @user.id
+      expect(response.body).to eq @user.to_json
+    end
+  end
+
   describe 'POST #create' do
     it 'should respond successfully with an HTTP 201 status code' do
       params = { name: "superman", email: "super@example.com" }

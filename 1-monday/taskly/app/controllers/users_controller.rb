@@ -17,6 +17,10 @@ class UsersController < ApplicationController
 
   def show
     user = User.find(params[:id])
+    unless user
+      render status: 404, json: {error: "user not found"}
+      return
+    end
     render json: user
   end
 
@@ -32,7 +36,12 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
+    user = User.find(params[:id])
+    unless user
+      render status: 404, json: {error: "user not found"}
+      return
+    end
+    user.destroy
     render status: 204, json: {status: "Deleted"}
   end
 
