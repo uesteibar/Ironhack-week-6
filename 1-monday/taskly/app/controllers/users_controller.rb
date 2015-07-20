@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     if user.valid?
       user.save
-      render json: user
+      render status: 201, json: user
     else
       render status: 400, json: user.errors
     end
@@ -29,6 +29,11 @@ class UsersController < ApplicationController
     else
       render status: 400, json: user.errors
     end
+  end
+
+  def destroy
+    User.find(params[:id]).destroy
+    render status: 204, json: {status: "Deleted"}
   end
 
   private
