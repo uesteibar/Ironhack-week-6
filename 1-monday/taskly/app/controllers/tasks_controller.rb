@@ -1,21 +1,12 @@
 class TasksController < ApplicationController
+  before_filter :find_user, only: [:index, :create, :show, :update, :destroy]
+
   def index
-    user = User.find_by(id: params[:user_id].to_i)
-    unless user
-      render status: 404, json: {error: "user not found"}
-      return
-    end
-    render json: user.tasks
+    render json: @user.tasks
   end
 
   def create
-    user = User.find_by(id: params[:user_id].to_i)
-    unless user
-      render status: 404, json: {error: "user not found"}
-      return
-    end
-
-    task = user.tasks.new(task_params)
+    task = Task.new(task_params.merge({user_id: params[:user_id]}))
     if task.valid?
       task.save
       render status: 201, json: task
@@ -25,7 +16,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    task = Task.find(params[:id])
+    task = @user.tasks.find(params[:id])
     unless task
       render status: 404, json: {error: "task not found"}
       return
@@ -58,5 +49,13 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:description, :completed_timestamp)
+  end
+
+  def find_user
+    @user = User.find_by(id: params[:user_id])
+    unless @user
+      render status: 404, json: {error: "user not found"}
+      return
+    end
   end
 end
