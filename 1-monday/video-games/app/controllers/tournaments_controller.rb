@@ -1,5 +1,5 @@
 class TournamentsController < ApplicationController
   def index
-    render(:index)
+    render :index
   end
 end
