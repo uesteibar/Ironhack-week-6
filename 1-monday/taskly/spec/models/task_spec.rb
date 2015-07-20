@@ -23,6 +23,7 @@ RSpec.describe Task, type: :model do
       @user = User.create(name: "superman", email: "superemail@example.com")
       @user.tasks.create(description: "save the world")
     end
+    
     it 'should delete all the tests when the owner user is deleted' do
       task = @user.tasks.first
       @user.destroy

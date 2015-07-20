@@ -79,7 +79,7 @@ RSpec.describe UsersController, type: :controller do
       @user = User.create(name: "superuser", email: "root@example.com")
     end
 
-    it 'should delete de user' do
+    it 'should delete the user' do
       expect do
         delete :destroy, id: @user.id
       end.to change(User, :count).by(-1)
