@@ -23,11 +23,14 @@ class Match < ActiveRecord::Base
   private
 
   def self.find_by_faction(faction_id)
-    # UGLY VERSION: uncomment if performance problems
-    # select("*, ((SELECT COUNT(id) FROM matches WHERE winner_faction_id = ?)/(SELECT COUNT(id) FROM matches)) AS winning_ratio", faction_id).
+    matches = played_by_faction(faction_id)
+    {
+      winning_ratio: matches.where("winner_faction_id = ?", faction_id).count / matches.count,
+      matches: matches
+    }
+  end
 
-
-    matches = where("winner_faction_id = ? OR loser_faction_id = ?", faction_id, faction_id)
-    {winning_ratio: matches.count / Match.count, matches: matches}
+  def self.played_by_faction(faction_id)
+    where("winner_faction_id = ? OR loser_faction_id = ?", faction_id, faction_id)
   end
 end
