@@ -8,6 +8,7 @@ RSpec.describe MatchesController, type: :request do
         winner_faction: Faction.create(name: "Orcs"),
         loser_faction: Faction.create(name: "Elves")
       }
+      Match.create(match_params)
       @match = Match.create(match_params)
     end
 
@@ -16,7 +17,7 @@ RSpec.describe MatchesController, type: :request do
       get "/players/#{@match.winner_id}/matches"
       expect(response).to have_http_status(200)
       data = JSON.parse(response.body)
-      expect(data.length).to eq 1
+      expect(data.length).to eq 2
     end
   end
 
@@ -25,7 +26,8 @@ RSpec.describe MatchesController, type: :request do
       get "/factions/#{@match.winner_id}/matches"
       expect(response).to have_http_status(200)
       data = JSON.parse(response.body)
-      expect(data.length).to eq 1
+      expect(data["matches"].length).to eq 2
+      expect(data["winning_ratio"]).to eq 1
     end
   end
 end
