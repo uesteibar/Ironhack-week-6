@@ -19,6 +19,12 @@ RSpec.describe MatchesController, type: :request do
       data = JSON.parse(response.body)
       expect(data.length).to eq 2
     end
+
+    it 'responds successfully with an HTTP 200 status code' do
+      get "/players/#{@match.winner_id}/matches"
+      expect(response).to be_success
+      expect(response).to have_http_status 200
+    end
   end
 
   describe "GET /factions/:id/matches" do
@@ -28,6 +34,12 @@ RSpec.describe MatchesController, type: :request do
       data = JSON.parse(response.body)
       expect(data["matches"].length).to eq 2
       expect(data["winning_ratio"]).to eq 1
+    end
+
+    it 'responds successfully with an HTTP 200 status code' do
+      get "/factions/#{@match.winner_id}/matches"
+      expect(response).to be_success
+      expect(response).to have_http_status 200
     end
   end
 end
