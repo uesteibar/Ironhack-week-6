@@ -16,11 +16,11 @@ class Match < ActiveRecord::Base
     end
   end
 
-  private
-
   def self.find_by_player(player_id)
     where("winner_id = ? OR loser_id = ?", player_id, player_id)
   end
+
+  private
 
   def self.find_by_faction(faction_id)
     # UGLY VERSION: uncomment if performance problems

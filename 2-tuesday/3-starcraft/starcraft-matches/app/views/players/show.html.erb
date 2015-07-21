@@ -1,0 +1,7 @@
+<h1><%= @player.name %></h1>
+
+<ul>
+  <% @player_matches.each do |match| %>
+    <li><%= match.date %> - duration: <%= match.duration %></li>
+  <% end %>
+</ul>

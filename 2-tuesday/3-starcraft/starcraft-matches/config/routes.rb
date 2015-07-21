@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :players, only: [] do
+  resources :players, only: [:index, :show] do
     resources :matches, only: [:index]
   end
 
