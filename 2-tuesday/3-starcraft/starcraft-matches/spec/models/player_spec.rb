@@ -15,13 +15,13 @@ RSpec.describe Player, type: :model do
 
     it 'should NOT create a player if name is empty' do
       expect do
-        Player.create!(name: "")
+        Player.create!(@player_params.merge({name: ""}))
       end.to raise_error ActiveRecord::RecordInvalid
     end
 
     it 'should NOT create a player if name is nil' do
       expect do
-        Player.create!(name: nil)
+        Player.create!(@player_params.merge({name: nil}))
       end.to raise_error ActiveRecord::RecordInvalid
     end
   end
