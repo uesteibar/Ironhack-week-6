@@ -1,0 +1,8 @@
+<div class="row">
+  <h1 class="text-center">Most commented upcoming concerts</h1>
+  <div class="col-md-8 col-md-offset-2">
+    <% @concerts.each do |concert| %>
+    <%= render "helpers/concerts/concert_simple", concert: concert %>
+    <% end %>
+  </div>
+</div>

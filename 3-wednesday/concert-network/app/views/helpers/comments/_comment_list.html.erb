@@ -1,0 +1,15 @@
+<div class="row">
+  <% comments.reverse.each do |comment| %>
+  <div class="media col-md-6 col-md-offset-3">
+    <div class="media-body">
+      <h4 class="media-heading"><%= comment.username %></h4>
+      <p>
+        <%= comment.content %>
+      </p>
+      <p>
+        <%= comment.created_at.strftime("%d.%m.%y at %H:%M") %>
+      </p>
+    </div>
+  </div>
+  <% end %>
+</div>

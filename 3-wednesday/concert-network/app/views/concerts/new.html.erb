@@ -1,0 +1,51 @@
+<div class="row">
+
+  <div class="col-md-3">
+    <%= render 'layouts/errors', model: @concert  %>
+  </div>
+
+  <div class="col-md-6">
+
+    <%= form_for [@concert] do |f| %>
+    <div class="form-group">
+      <%= f.label :band%>
+      <%= f.text_field :band, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :date%>
+      <%= f.date_field :date, class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :venue%>
+      <%= f.text_field :venue, class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :city%>
+      <%= f.select(:city_id, options_for_select(@cities.order(:name).to_a.map{ |city| [city.name, city.id] }), {}, {class: "form-control"}) %>
+
+    </div>
+
+    <div class="form-group">
+      <%= f.label :price%>
+      <%= f.number_field :price, class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :description%>
+      <%= f.text_area :description, class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :poster%>
+      <%= f.file_field :poster, class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit "Submit", class: "btn btn-primary btn-block" %>
+    </div>
+    <% end %>
+  </div>
+</div>

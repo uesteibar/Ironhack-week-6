@@ -1,0 +1,11 @@
+<p>
+  <% labeltag = "default" %>
+  <% if comments_count > 0 && comments_count < 5 %>
+  <% labeltag = "info" %>
+  <% elsif comments_count >=5 && comments_count < 15 %>
+  <% labeltag = "warning" %>
+  <% elsif comments_count >= 15 %>
+  <% labeltag = "danger" %>
+  <% end %>
+  <span class="label label-<%= labeltag %>"><%= pluralize(comments_count, "comment") %></span>
+</p>
