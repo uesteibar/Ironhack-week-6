@@ -25,6 +25,7 @@ RSpec.describe UsersController, type: :controller do
       expect do
         post :create, user: params
       end.to change(User, :count).by(1)
+      expect(User.last.username).to eq params[:username]
     end
   end
 end
