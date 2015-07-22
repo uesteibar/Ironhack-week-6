@@ -1,5 +1,5 @@
 class CitiesController < ApplicationController
-  before_action :authorize_user
+  before_action :admin_only
 
   def index
     @cities = City.all

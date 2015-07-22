@@ -18,4 +18,11 @@ class ApplicationController < ActionController::Base
       redirect_to "/"
     end
   end
+
+  def admin_only
+    unless current_user && current_user.role == "admin"
+      flash[:danger] = "You need to be an admin to go there."
+      redirect_to "/"
+    end
+  end
 end
