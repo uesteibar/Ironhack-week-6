@@ -17,7 +17,7 @@ RSpec.describe SessionsController, type: :controller do
     end
   end
 
-  describe 'POST #create' do
+  describe 'GET #destroy' do
     before(:each) do
       @user = User.create(
         username: "uesteibar",
