@@ -13,15 +13,35 @@ RSpec.describe CitiesController, type: :controller do
   end
 
   describe 'GET #index' do
-    it 'responds successfully with an HTTP 200 status code' do
-      get :index
-      expect(response).to be_success
-      expect(response.code.to_i).to eq(200)
+    context 'when the user is the admin' do
+      it 'responds successfully with an HTTP 200 status code' do
+        get :index
+        expect(response).to be_success
+        expect(response.code.to_i).to eq(200)
+      end
+
+      it 'renders the index template' do
+        get :index
+        expect(response).to render_template('index')
+      end
     end
 
-    it 'renders the index template' do
-      get :index
-      expect(response).to render_template('index')
+    context 'when the user is not the admin' do
+      before(:each) do
+        @user.role = nil
+        @user.save
+      end
+
+      it 'responds successfully with an HTTP 302 status code' do
+        get :index
+        expect(response).not_to be_success
+        expect(response.code.to_i).to eq(302)
+      end
+
+      it 'redirects to root' do
+        get :index
+        expect(response).to redirect_to('/')
+      end
     end
   end
 

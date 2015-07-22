@@ -45,7 +45,7 @@ RSpec.describe User, type: :model do
       end.to raise_error ActiveRecord::RecordInvalid
     end
 
-    it "should NOT create the user when password_digest is empty" do
+    it "should NOT create the user when password_digest is nil" do
       expect do
         User.create!(@user_params.merge({password_digest: nil}))
       end.to raise_error ActiveRecord::RecordInvalid

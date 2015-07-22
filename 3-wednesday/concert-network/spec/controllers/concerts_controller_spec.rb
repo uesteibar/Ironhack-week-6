@@ -80,7 +80,7 @@ RSpec.describe ConcertsController, type: :controller do
         session.clear
       end
 
-      it 'responds successfully with an HTTP 200 status code' do
+      it 'responds successfully with an HTTP 302 status code' do
         get :new
         expect(response).not_to be_success
         expect(response.code.to_i).to eq(302)
@@ -114,7 +114,7 @@ RSpec.describe ConcertsController, type: :controller do
       before(:each) do
         session.clear
       end
-      
+
       it 'creates a concert' do
         params = {
           band: 'Jessie J',
