@@ -1,4 +1,6 @@
 class CitiesController < ApplicationController
+  before_action :authorize_user
+
   def index
     @cities = City.all
     @city = City.new

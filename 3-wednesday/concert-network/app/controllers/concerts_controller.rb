@@ -1,4 +1,6 @@
 class ConcertsController < ApplicationController
+  before_action :authorize_user, only: [:new, :create]
+
   def index
     @concerts_today = Concert.today
     @concerts_this_month = Concert.this_month

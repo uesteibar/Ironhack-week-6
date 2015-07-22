@@ -11,4 +11,11 @@ class ApplicationController < ActionController::Base
     end
     @current_user
   end
+
+  def authorize_user
+    unless current_user
+      flash[:warning] = "Please log in to access this page."
+      redirect_to "/"
+    end
+  end
 end

@@ -20,7 +20,6 @@
             Live!
           </a>
           </div>
-          <% if current_user %>
           <ul class="nav navbar-nav">
             <li>
               <%= link_to "Concerts", concerts_path %>
@@ -38,7 +37,6 @@
               <%= link_to "Manage cities", "/cities" %>
             </li>
           </ul>
-          <% end %>
 
           <ul class="nav navbar-nav navbar-right">
             <% if current_user %>
