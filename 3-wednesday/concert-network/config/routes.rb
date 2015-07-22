@@ -11,4 +11,7 @@ Rails.application.routes.draw do
 
   resources :cities, only: [:index, :create, :destroy]
 
+  get "/users/signup" => "users#new"
+  resources :users, only: [:create]
+
 end
