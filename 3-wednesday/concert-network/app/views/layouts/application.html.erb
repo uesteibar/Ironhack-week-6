@@ -37,12 +37,27 @@
               <%= link_to "Manage cities", "/cities" %>
             </li>
           </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <% if current_user %>
+              <li>
+                <%= link_to "Log out", "/logout" %>
+              </li>
+            <% else %>
+            <li>
+              <%= link_to "Log in", "/login" %>
+            </li>
+            <li>
+              <%= link_to "Sign up", "/users/signup" %>
+            </li>
+            <% end %>
+          </ul>
         </div>
       </nav>
 
       <% flash.each do |key, value| %>
         <%= content_tag :div, value, class: "text-center alert alert-#{key}" %>
-      <% end %>
+          <% end %>
 
 
             <%= yield %>
