@@ -1,6 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe CitiesController, type: :controller do
+  before(:each) do
+    @user = User.create(
+    username: "admin",
+    email: "admin@live.com",
+    password: "admin",
+    password_confirmation: "admin",
+    role: "admin"
+    )
+    session[:user_id] = @user.id
+  end
+
   describe 'GET #index' do
     it 'responds successfully with an HTTP 200 status code' do
       get :index
