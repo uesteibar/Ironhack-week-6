@@ -1,0 +1,11 @@
+<div class="row">
+
+  <%= render "helpers/concerts/aside_concerts", concerts: @concerts_this_month %>
+
+  <div class="col-md-8">
+    <h2 class="text-center">Concerts today!</h2>
+    <% @concerts_today.each do |concert| %>
+      <%= render "helpers/concerts/concert_simple", concert: concert %>
+    <% end %>
+  </div>
+</div>

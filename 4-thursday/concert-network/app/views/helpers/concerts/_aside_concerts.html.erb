@@ -1,0 +1,24 @@
+<div class="col-md-3">
+  <h4 class="text-center">Concerts this month!</h4>
+  <% concerts.each do |concert| %>
+    <div class="panel panel-default concert-card">
+      <div class="panel-body">
+        <p class="lead text-center">
+          <%= link_to concert.band, concert_path(concert) %>
+        </p>
+        <div>
+          <%= image_tag concert.poster.url(:thumb), class:"img-responsive center-block" %>
+        </div>
+        <p class="text-center">
+          <%= concert.date.strftime("%d.%m.%y") %>
+        </p>
+        <p class="text-center">
+          <%= "#{concert.venue} - #{concert.city.name}" %>
+        </p>
+        <p class="text-center">
+          <%= "#{concert.price} €" %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>

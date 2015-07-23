@@ -1,0 +1,25 @@
+<div class="jumbotron row">
+  <div class="col-md-3">
+    <%= image_tag concert.poster.url(:medium), class:"img-responsive" %>
+  </div>
+  <div class="col-md-8 col-md-offset-1">
+    <h1>
+      <%= concert.band %>
+    </h1>
+    <p>
+      <%= concert.date.strftime("%d.%m.%y") %>
+    </p>
+    <p>
+      <%= "#{concert.price} €" %>
+    </p>
+    <p>
+      <%= "#{concert.venue} - #{concert.city.name}" %>
+    </p>
+
+    <%= render "helpers/comments/comments_count_tag", comments_count: concert.comments_count %>
+
+    <p>
+      <%= link_to "Details", concert_path(concert), class: "btn btn-primary btn-lg" %>
+    </p>
+  </div>
+</div>
